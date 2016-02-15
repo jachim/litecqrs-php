@@ -13,7 +13,7 @@ class MongoDBEventStore implements \LiteCQRS\EventStore\EventStoreInterface
     private $serializer;
     private $collection;
 
-    public function __construct(Connection $connection, SerializerInterface $serializer, $database, $collection = 'litecqrs_events')
+    public function __construct(Connection $connection, SerializerInterface $serializer, $database='', $collection = 'litecqrs_events')
     {
         $this->connection = $connection;
         $this->database   = $database;
