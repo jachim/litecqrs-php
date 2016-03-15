@@ -83,6 +83,7 @@ abstract class AbstractEventMessageBus implements EventMessageBus
 
             $handler->handle($event);
         } catch(Exception $e) {
+            throw $e;
 //            $this->handle(new EventExecutionFailed(array(
 //                "service"   => get_class($service),
 //                "exception" => $e,
