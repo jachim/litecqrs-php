@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="litecqrs.odm.identity_map.class">LiteCQRS\Plugin\DoctrineMongoDB\ODMIdentityMap</parameter>
+        <parameter key="litecqrs.odm.repository.class">LiteCQRS\Plugin\DoctrineMongoDB\ODMRepository</parameter>
+    </parameters>
+
+    <services>
+        <service id="litecqrs.plugin.doctrine.odm_handler_factory" class="LiteCQRS\Plugin\DoctrineMongoDB\OdmHandlerFactory">
+            <argument type="service" id="doctrine_mongodb.odm.default_document_manager" />
+            <tag name="lite_cqrs.command_proxy_factory" priority="20" />
+        </service>
+
+        <service id="litecqrs.repository.odm" class="%litecqrs.odm.repository.class%">
+            <argument type="service" id="doctrine_mongodb.odm.default_document_manager" />
+        </service>
+
+        <service id="litecqrs.identity_map.odm" class="%litecqrs.odm.identity_map.class%" public="false">
+            <argument type="service" id="doctrine_mongodb.odm.default_document_manager" />
+        </service>
+    </services>
+</container>

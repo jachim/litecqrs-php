@@ -18,10 +18,12 @@ class LiteCQRSExtension extends Extension
 
         if ($config['orm']) {
             $loader->load('orm.xml');
-            $container->setAlias('litecqrs.identity_map', 'litecqrs.identity_map.orm');
+//            $container->setAlias('litecqrs.identity_map', 'litecqrs.identity_map.orm');
             $container->setAlias('litecqrs.repository', 'litecqrs.repository.orm');
         }
-
+        $loader->load('odm.xml');
+        $loader->load('orm_odm.xml');
+        $container->setAlias('litecqrs.identity_map', 'litecqrs.identity_map.orm_odm');
         if ($config['jms_serializer']) {
             $loader->load('jms_serializer.xml');
         }

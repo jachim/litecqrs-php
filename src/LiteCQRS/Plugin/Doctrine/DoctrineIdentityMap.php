@@ -9,7 +9,6 @@ use Doctrine\ORM\EntityManager;
 class DoctrineIdentityMap implements IdentityMapInterface
 {
     private $entityManager;
-
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -47,6 +46,14 @@ class DoctrineIdentityMap implements IdentityMapInterface
         }
 
         return $class->getSingleIdReflectionProperty()->getValue($object);
+    }
+
+    /**
+     * @return EntityManager
+     */
+    public function getEntityManager()
+    {
+        return $this->entityManager;
     }
 }
 
