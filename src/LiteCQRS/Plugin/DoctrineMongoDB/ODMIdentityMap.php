@@ -40,7 +40,7 @@ class ODMIdentityMap implements IdentityMapInterface
     public function getAggregateId(EventProviderInterface $object)
     {
         $class = $this->documentManager->getClassMetadata(get_class($object));
-        return $class->getIdentifierValue($object);
+        return $class->identifier ? $class->getIdentifierValue($object) : null;
     }
 
     /**
