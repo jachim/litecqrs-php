@@ -24,8 +24,22 @@ class EventMessageHandler implements MessageHandlerInterface
     {
         try {
             $this->next->handle($command);
-            $this->passEventsToStore();
-            $this->messageBus->dispatchEvents();
+//            $this->passEventsToStore();
+//            $this->messageBus->dispatchEvents();
+            $eventsToStore=[];
+            while(count($events=$this->queue->dequeueAllEvents())) {
+                foreach($events as $event) {
+                    $this->messageBus->publish($event);
+                    $this->messageBus->dispatchEvents();
+                    $eventsToStore[]=$event;
+                }
+            }
+            foreach($eventsToStore as $eventToStore) {
+                if ($this->eventStore) {
+                    $this->eventStore->store($eventToStore);
+                }
+            }
+
         } catch(Exception $e) {
             $this->messageBus->clear();
             throw $e;
