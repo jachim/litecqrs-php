@@ -21,7 +21,8 @@ class HandlerPass implements CompilerPassInterface
         $definition->setArguments($args);
 
         $services = array();
-        foreach ($container->findTaggedServiceIds('lite_cqrs.command_handler') as $id => $attributes) {
+        $taggedServiceIds = $container->findTaggedServiceIds('lite_cqrs.command_handler');
+        foreach ($taggedServiceIds as $id => $attributes) {
             $definition = $container->findDefinition($id);
             $class = $definition->getClass();
 

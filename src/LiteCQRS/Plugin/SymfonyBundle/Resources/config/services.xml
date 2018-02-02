@@ -30,7 +30,7 @@
             <tag name="lite_cqrs.command_proxy_factory" priority="255" />
         </service>
 
-        <service id="command_bus" class="%litecqrs.command_bus.class%">
+        <service id="command_bus" class="%litecqrs.command_bus.class%" public="true">
             <argument type="service" id="service_container" />
             <argument type="collection" />
         </service>
