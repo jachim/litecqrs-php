@@ -10,7 +10,7 @@
 
     <services>
         <service id="litecqrs.serializer" class="%litecqrs.serializer.class%">
-            <argument type="service" id="serializer" />
+            <argument type="service" id="jms_serializer" />
         </service>
 
         <service id="litecqrs.serializer.metadata_driver" class="%litecqrs.serializer.metadata_driver.class%" public="false">
