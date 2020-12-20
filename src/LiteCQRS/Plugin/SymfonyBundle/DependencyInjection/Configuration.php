@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->booleanNode('monolog')->defaultTrue()->end()
                     ->booleanNode('swift_mailer')->defaultFalse()->end()
-                    ->booleanNode('orm')->defaultFalse()->end()
+                    ->booleanNode('orm')->defaultTrue()->end()
                     ->booleannode('jms_serializer')->defaultFalse()->end()
                     ->booleanNode('dbal_event_store')->defaultFalse()->end()
                     ->booleanNode('couchdb_event_store')->defaultFalse()->end()
