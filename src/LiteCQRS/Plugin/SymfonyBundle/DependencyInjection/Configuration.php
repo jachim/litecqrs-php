@@ -10,10 +10,10 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $tb = new TreeBuilder();
+        $tb = new TreeBuilder('lite_cqrs');
 
         $tb
-            ->getRootNode('lite_cqrs')
+            ->getRootNode()
                 ->children()
                     ->booleanNode('monolog')->defaultTrue()->end()
                     ->booleanNode('swift_mailer')->defaultFalse()->end()
