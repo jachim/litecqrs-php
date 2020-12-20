@@ -3,12 +3,13 @@
 namespace LiteCQRS\Plugin\Monolog;
 
 use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 
 class MonologLoggerFactory
 {
     private $logger;
 
-    public function __construct(Logger $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }

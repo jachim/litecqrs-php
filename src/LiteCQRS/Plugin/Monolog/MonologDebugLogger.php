@@ -8,6 +8,7 @@ use LiteCQRS\Command;
 use Exception;
 
 use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 
 /**
  * Logs all commands or events and their success/failure status
@@ -18,7 +19,7 @@ class MonologDebugLogger implements MessageHandlerInterface
     private $logger;
     private $next;
 
-    public function __construct(MessageHandlerInterface $next, Logger $logger)
+    public function __construct(MessageHandlerInterface $next, LoggerInterface $logger)
     {
         $this->next   = $next;
         $this->logger = $logger;
