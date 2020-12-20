@@ -10,7 +10,7 @@
     <services>
         <service id="litecqrs.identity_map.orm_odm" class="%litecqrs.orm_odm.identity_map.class%" public="false">
             <argument type="service" id="litecqrs.identity_map.orm" />
-            <argument type="service" id="litecqrs.identity_map.odm" />
+<!--            <argument type="service" id="litecqrs.identity_map.odm" />-->
         </service>
     </services>
 </container>

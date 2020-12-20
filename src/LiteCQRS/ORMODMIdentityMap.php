@@ -24,7 +24,7 @@ class ORMODMIdentityMap implements IdentityMapInterface
      */
     private $mongoIdentityMap;
 
-    public function __construct(DoctrineIdentityMap $doctrineIdentityMap, ODMIdentityMap $ODMIdentityMap)
+    public function __construct(DoctrineIdentityMap $doctrineIdentityMap, ?ODMIdentityMap $ODMIdentityMap=null)
     {
         $this->doctrineIdentityMap = $doctrineIdentityMap;
         $this->mongoIdentityMap = $ODMIdentityMap;
@@ -41,7 +41,7 @@ class ORMODMIdentityMap implements IdentityMapInterface
 
     public function all()
     {
-        return array_merge($this->doctrineIdentityMap->all(), $this->mongoIdentityMap->all());
+        return array_merge($this->doctrineIdentityMap->all(), $this->mongoIdentityMap ? $this->mongoIdentityMap->all() : []);
     }
 
     public function getAggregateId(EventProviderInterface $object)
@@ -60,7 +60,7 @@ class ORMODMIdentityMap implements IdentityMapInterface
     private function isFromMongo(EventProviderInterface $object)
     {
         try {
-            return $this->mongoIdentityMap->getDocumentManager()->getClassMetadata(get_class($object));
+            return $this->mongoIdentityMap && $this->mongoIdentityMap->getDocumentManager()->getClassMetadata(get_class($object));
         } catch(MappingException $ex) {
             return false;
         }
