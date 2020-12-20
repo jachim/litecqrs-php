@@ -13,7 +13,7 @@ class Configuration implements ConfigurationInterface
         $tb = new TreeBuilder();
 
         $tb
-            ->root('lite_cqrs')
+            ->getRootNode('lite_cqrs')
                 ->children()
                     ->booleanNode('monolog')->defaultTrue()->end()
                     ->booleanNode('swift_mailer')->defaultFalse()->end()
