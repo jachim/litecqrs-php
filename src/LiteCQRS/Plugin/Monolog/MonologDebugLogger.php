@@ -49,7 +49,7 @@ class MonologDebugLogger implements MessageHandlerInterface
             $this->next->handle($message);
             $this->logger->debug(sprintf($log, 'SUCCESS', $info), $context);
         } catch(Exception $e) {
-            $this->logger->err(sprintf($log, 'FAIL', $info) . ' - ' . $e->getMessage(), $context);
+            $this->logger->error(sprintf($log, 'FAIL', $info) . ' - ' . $e->getMessage(), $context);
             throw $e;
         }
     }
